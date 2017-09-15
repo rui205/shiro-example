@@ -8,6 +8,7 @@ import com.github.zhangkaitao.shiro.chapter12.service.PermissionService;
 import com.github.zhangkaitao.shiro.chapter12.service.RoleService;
 import com.github.zhangkaitao.shiro.chapter12.service.UserService;
 import junit.framework.Assert;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -21,6 +22,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import javax.sql.DataSource;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * <p>User: Zhang Kaitao
@@ -125,6 +130,23 @@ public class ShiroTest {
 
 
 
+    }
+
+    @Test
+    public void test_test(){
+        List<Integer> list = new ArrayList<>();
+        for(int i = 0;i < 1005;i ++){
+            list.add(i);
+        }
+        // int[] array = list.stream().toArray();
+        int n = list.size() % 500 > 0 ? list.size() / 500 + 1 : list.size() / 500;
+        for(int i = 0; i < n; i ++){
+            List<Integer> value = null;
+            if((i + 1) * 500 > list.size()){
+                value = list.subList(i * 500, list.size());
+            } else value = list.subList(i * 500, (i + 1) * 500);
+            System.out.println(value.get(value.size() - 1)+":"+value.size());
+        }
     }
 
 }

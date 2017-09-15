@@ -145,6 +145,17 @@
     <build>
         <finalName>chapter14</finalName>
         <plugins>
+        		<plugin>  
+	            <groupId>org.apache.maven.plugins</groupId>  
+	            <artifactId>maven-compiler-plugin</artifactId>  
+	            <version>3.3</version>
+	            <configuration>  
+	                <!-- 指定source和target的版本 -->                 
+	                <source>1.8</source>  
+	                <target>1.8</target>  
+	            </configuration>  
+	        </plugin> 
+        
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
@@ -161,7 +172,7 @@
                         <connector implementation="org.eclipse.jetty.server.ssl.SslSocketConnector">
                             <port>9443</port>
                             <maxIdleTime>60000</maxIdleTime>
-                            <keystore>${project.basedir}/localhost.keystore</keystore>
+                            <keystore>/tmp/keytool/localhost.keystore</keystore>
                             <password>123456</password>
                             <keyPassword>123456</keyPassword>
                         </connector>

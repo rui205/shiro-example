@@ -24,6 +24,7 @@ public class MySessionDAO extends CachingSessionDAO {
 
     @Override
     protected Serializable doCreate(Session session) {
+    	System.out.println(System.getProperty("java.io.tmpdir"));
         Serializable sessionId = generateSessionId(session);
         assignSessionId(session, sessionId);
         String sql = "insert into sessions(id, session) values(?,?)";
